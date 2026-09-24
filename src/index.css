@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-headline: "Space Grotesk", "Segoe UI", sans-serif;
+
+  --color-background: #111716;
+  --color-surface: #19211f;
+  --color-primary: #b8efc7;
+  --color-primary-container: #87dca4;
+  --color-on-primary: #102319;
+  --color-on-primary-container: #102319;
+  --color-secondary: #ff8a65;
+  --color-secondary-container: #d96548;
+  --color-on-secondary: #28130d;
+  --color-on-secondary-container: #28130d;
+  --color-tertiary: #f4d6a0;
+  --color-tertiary-container: #d9b875;
+  --color-on-tertiary: #2d2111;
+  --color-on-tertiary-container: #2d2111;
+
+  --color-surface-container-lowest: #0b100f;
+  --color-surface-container-low: #151d1b;
+  --color-surface-container: #1c2824;
+  --color-surface-container-high: #24332e;
+  --color-surface-container-highest: #30443d;
+
+  --color-on-surface: #f3f0e7;
+  --color-on-surface-variant: #aebbb2;
+  --color-outline: #385047;
+  --color-outline-variant: #53685e;
+
+  @keyframes glow-breathing {
+    0%,
+    100% {
+      box-shadow:
+        0 0 25px rgba(78, 222, 163, 0.4),
+        0 0 10px rgba(78, 222, 163, 0.1);
+      transform: scale(1);
+    }
+
+    50% {
+      box-shadow:
+        0 0 50px rgba(78, 222, 163, 0.7),
+        0 0 25px rgba(78, 222, 163, 0.3);
+      transform: scale(1.05);
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-sans antialiased;
+    background-image:
+      radial-gradient(
+        circle at 88% 8%,
+        rgba(184, 239, 199, 0.11),
+        transparent 28rem
+      ),
+      radial-gradient(
+        circle at 5% 92%,
+        rgba(255, 138, 101, 0.08),
+        transparent 24rem
+      );
+    background-attachment: fixed;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-headline tracking-tighter;
+  }
+}
+
+@utility glass-panel {
+  background: rgba(28, 40, 36, 0.76);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(184, 239, 199, 0.14);
+  border-radius: 0.75rem;
+}
+
+@utility text-gradient {
+  background: linear-gradient(135deg, #b8efc7 0%, #ff8a65 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility bg-kinetic-gradient {
+  background: linear-gradient(135deg, #b8efc7 0%, #87dca4 100%);
+}
+
+@utility btn-vibrant {
+  @apply bg-secondary text-on-secondary font-headline font-black px-8 py-4 rounded-lg uppercase tracking-[0.08em] text-sm shadow-xl hover:bg-secondary-container transition-all active:scale-95 text-center;
+}
+
+@utility btn-outline-dark {
+  @apply px-8 py-4 rounded-lg font-headline font-bold uppercase tracking-[0.08em] text-sm border border-outline text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-center;
+}
+
+@utility animate-glow-breathing {
+  animation: glow-breathing 3s ease-in-out infinite;
+}
